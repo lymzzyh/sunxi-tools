@@ -41,6 +41,7 @@ typedef struct {
 
 spi_flash_info_t spi_flash_info[] = {
 	{ 0xEF40,   0x6,   0xD8, 64 * 1024,   0x20, 4 * 1024,   0x02, 256,   "Winbond W25Qxx" },
+	{ 0xC840,   0x6,   0xD8, 64 * 1024,   0x20, 4 * 1024,   0x02, 256,   "GigaDevice 25Qxx" },
 };
 
 spi_flash_info_t default_spi_flash_info = {
@@ -426,6 +427,9 @@ void aw_fel_spiflash_info(feldev_handle *dev)
 	switch (buf[3]) {
 	case 0xEF:
 		manufacturer = "Winbond";
+		break;
+	case 0xC8:
+		manufacturer = "GigaDevice";
 		break;
 	default:
 		manufacturer = "Unknown";
